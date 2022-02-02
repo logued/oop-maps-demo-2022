@@ -135,7 +135,7 @@ public class MapsDemo {
 
 
     //TODO
-    // Create a HashMap called pcConfigMap.
+    // Create a HashMap called pcConfigMap
     // Write a function called mapComputer() that will accept the map as an argument,
     // and will fill the map with PC configuration details:  (hard coded)
     // - add keys - make, model, ram, diskSize to the map,
@@ -144,6 +144,10 @@ public class MapsDemo {
     // Write code to find and display the PC make.
 
   }
+
+  // public static void mapComputer( Map<String,String> map ) {
+  //     code to populate the map
+  // }
 
 
   public static void map2() {
