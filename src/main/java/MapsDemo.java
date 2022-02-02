@@ -1,26 +1,30 @@
 
-/**
- * Map Interface Updated: Feb. 2020 Implemented by HashMap and TreeMap classes
+/**                                    February 2022
+ * Map Interface - Implemented by HashMap and TreeMap classes
  *
  * A Map is a Data Structure that allows us to associate a Key with a Value.
- * e.g. A name with a favorite film "John" -> "StarWars" or a class group with a
- * list of students: "SD2A" -> {"Anne", "John",..} When we add an entry to a Map
- * we provide both the Key and the Value. To retrieve a Value, we must provide
- * the Key.
+ * e.g. A person's name with their favorite film "John" -> "StarWars"
+ * or a class group with alist of students: "SD2A" -> {"Anne", "John",..}.
  *
- * This is often called a "Key:Value" pair.
+ * When we add an entry to a Map we must provide both the Key and the Value.
+ * To retrieve a Value, we must provide the Key.
+ *
+ * These pairs are often called a "Key-Value" pair.
  *
  * A Map stores both the Key and the Value for each key|value pair. Key and
- * Value must be object types (not primitive types, so Integer rather than int)
- * The Key class must implement methods hashCode() and equals() [or inherit
+ * Value must be class types (not primitive types, so Integer rather than int)
+ * The Key class must implement the methods hashCode() and equals() [or inherit
  * them]
  *
- * String and Integer are the most effective and preferred Key types. Keys must
- * be unique (no duplicate keys are allowed) A Map can be implemented as a
- * HashMap or a TreeMap. - HashMap is fastest for put() and get() (but no
- * ordering) O(1) - TreeMap maintains a sorted order based on the "natural
- * ordering" of the Key elements (defined by compareTo()) or based on a
- * Comparator supplied in the Map constructor O(log n)
+ * String and Integer are the most effective and preferred Key types.
+ * Keys must be unique (no duplicate keys are allowed)
+ * A Map can be implemented as a HashMap or a TreeMap.
+ *  - HashMap is fastest for put() and get() (but no ordering)
+ *    HashMap time complexity is O(1)
+ *  - TreeMap maintains a sorted order based on the "natural ordering"
+ *    of the Key elements ( defined by compareTo() ) or based on a
+ *    Comparator supplied in the Map constructor
+ *    TreeMap time complexity is O(log n)
  *
  * Maps are commonly used to pass data around within a program, so it is
  * important to understand them.
@@ -37,6 +41,9 @@ import java.util.Set;
 public class MapsDemo {
 
   public static void main(String[] args) {
+    System.out.println("Maps Demo");
+    System.out.println("- remember to uncomment method calls in main() to see outputs.");
+
      map1();     // HashMap: String=>String
     // map2();     // HashMap: String=>Integer
     // map3();     // HashMap: Long=>Book
@@ -52,8 +59,11 @@ public class MapsDemo {
   public static void map1() // HashMap: String=>String,  key=>value
   {
     Map<String, String> map = new HashMap<>();
+    // Creates a new HashMap object, but stores the reference to the HashMap
+    // in a reference of type Map.  "Map" is an Interface, and we use it to create
+    // references to various types of map.  HashMap is very fast for retrieval.
 
-    // Add or put() entries into map
+    // Add or put() entries into map (Peoples favourite films)
     map.put("John", "Alien");
     map.put("Anne", "LaLa Land");
     map.put("Zoe", "Alien");
@@ -68,8 +78,8 @@ public class MapsDemo {
     key = "John";
     map.remove(key);  // deletes the Entry for John
 
-    // 2DO: add your own name and favourite film to the map
-    // then retrieve and display it. Finally remove it.
+    //TODO: add your own name and favourite film to the map
+    // and then retrieve and display it. Finally remove it.
     // get() returns null if the key is not found, so we should always check for null
     // (this check may be omitted from the sample code below, but you should always use it)
     key = "Elvis";
@@ -123,12 +133,24 @@ public class MapsDemo {
       System.out.println(k + " : " + film);
     }
 
+
+    //TODO
+    // Create a HashMap called pcConfigMap.
+    // Write a function called mapComputer() that will accept the map as an argument,
+    // and will fill the map with PC configuration details:  (hard coded)
+    // - add keys - make, model, ram, diskSize to the map,
+    // along with values for each of the configuration types.
+    // After the call, print out the keys and values in the map.
+    // Write code to find and display the PC make.
+
   }
+
 
   public static void map2() {
     // Keys and Values must be Class types.  
-    // Primitive types such as 'int' values will be converted
-    // automatically to correspoinding Class types (e.g. Integer). (called Autoboxing)
+    // Primitive type values such as 'int' values will be converted
+    // automatically to their corresponding Class types (e.g. Integer).
+    // (This is called Autoboxing).
 
     Map<String, Integer> ageMap = new HashMap<>();
 
@@ -137,7 +159,9 @@ public class MapsDemo {
     ageMap.put("Adam", 17);
     ageMap.put("Adam", 99);   // repeated key, value 99 replaces 17
 
-    Set<String> keySet = ageMap.keySet();  // get all keys 
+    Set<String> keySet = ageMap.keySet();  // get all keys
+    // All keys are unique (no two can be the same) so it is natural
+    // that they are returned as a Set. (A Set has no duplicate elements)
 
     // Retrieve all values using key values
     for (String key : keySet) {
