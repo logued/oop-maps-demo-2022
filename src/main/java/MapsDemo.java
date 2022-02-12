@@ -52,7 +52,7 @@ public class MapsDemo {
     // map6();     // TreeMap: Long=>Book - hashCode() & equals()
     // map7();     // HashMap: (Student=>Book) - hashCode() & equals() 
      //map8();     // HashMap: (String=>HashMap<String,String>
-    // map9();     // TreeMap: (Student=>Book) - Comparator required 
+     map9();     // TreeMap: (Student=>Book) - Comparator required
 
   }
 
