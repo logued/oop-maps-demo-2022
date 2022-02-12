@@ -70,7 +70,7 @@ public class MapsDemo {
     map.put("Zoe", "Trainspotting");  // replaces previous entry
 
     // retrieve or get() entries from the map
-    String key = "Anne";
+    String key = "Zoe";
     String favourite = map.get(key);  // use Key to get Value
     System.out.println(key + " favourite film is: " + favourite);
 
@@ -232,7 +232,6 @@ public class MapsDemo {
       System.out.print(s + ", ");
     }
 
-    System.out.println("");
 
     // Output all map entries
     for (Map.Entry<String, ArrayList<String>> entry : friendsMap.entrySet()) {
