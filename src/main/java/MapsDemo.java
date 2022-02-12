@@ -406,9 +406,9 @@ public static void map9()  // TREE Map (Student => Book )
         
         favouriteBook.put(student, book);
 
-        student = new Student(2002, "Zoe Salanda");
-        book = new Book(40023, "Columbiana");
-        favouriteBook.put(student, book);
+        // or, instantiate objects and add to map in one statement
+        favouriteBook.put(new Student(2002, "Zoe Salanda"),
+                          new Book(40023, "Columbiana")   );
         
         student = new Student(2002, "Adam Ant");
         book = new Book(30053, "Mountains");
