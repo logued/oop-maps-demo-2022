@@ -52,7 +52,7 @@ public class MapsDemo {
     // map6();     // TreeMap: Long=>Book - hashCode() & equals()
     // map7();     // HashMap: (Student=>Book) - hashCode() & equals() 
      //map8();     // HashMap: (String=>HashMap<String,String>
-     map9();     // TreeMap: (Student=>Book) - Comparator required
+     //map9();     // TreeMap: (Student=>Book) - Comparator required
 
   }
 
@@ -134,20 +134,9 @@ public class MapsDemo {
     }
 
 
-    //TODO
-    // Create a HashMap called pcConfigMap
-    // Write a function called mapComputer() that will accept the map as an argument,
-    // and will fill the map with PC configuration details:  (hard coded)
-    // - add keys - make, model, ram, diskSize to the map,
-    // along with values for each of the configuration types.
-    // After the call, print out the keys and values in the map.
-    // Write code to find and display the PC make.
 
   }
 
-  // public static void mapComputer( Map<String,String> map ) {
-  //     code to populate the map
-  // }
 
 
   public static void map2() {
