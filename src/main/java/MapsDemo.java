@@ -1,15 +1,13 @@
 
-/**                                    February 2022
+/**                                    February 2023
  * Map Interface - Implemented by HashMap and TreeMap classes
  *
  * A Map is a Data Structure that allows us to associate a Key with a Value.
  * e.g. A person's name with their favorite film "John" -> "StarWars"
- * or a class group with alist of students: "SD2A" -> {"Anne", "John",..}.
+ * or a class group with a list of students: "SD2A" -> {"Anne", "John",..}.
  *
  * When we add an entry to a Map we must provide both the Key and the Value.
- * To retrieve a Value, we must provide the Key.
- *
- * These pairs are often called a "Key-Value" pair.
+ * These pairs are often called a "Key-Value" pairs.
  *
  * A Map stores both the Key and the Value for each key|value pair. Key and
  * Value must be class types (not primitive types, so Integer rather than int)
@@ -19,15 +17,15 @@
  * String and Integer are the most effective and preferred Key types.
  * Keys must be unique (no duplicate keys are allowed)
  * A Map can be implemented as a HashMap or a TreeMap.
- *  - HashMap is fastest for put() and get() (but no ordering)
+ *  - HashMap is fastest for put() and get() (but order is not maintained)
  *    HashMap time complexity is O(1)
  *  - TreeMap maintains a sorted order based on the "natural ordering"
  *    of the Key elements ( defined by compareTo() ) or based on a
- *    Comparator supplied in the Map constructor
+ *    Comparator supplied in the Map constructor.
  *    TreeMap time complexity is O(log n)
  *
  * Maps are commonly used to pass data around within a program, so it is
- * important to understand them.
+ * important to understand how to use them.
  */
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -44,16 +42,15 @@ public class MapsDemo {
     System.out.println("Maps Demo");
     System.out.println("- remember to uncomment method calls in main() to see outputs.");
 
-     map1();     // HashMap: String=>String
-    // map2();     // HashMap: String=>Integer
-    // map3();     // HashMap: Long=>Book
-    // map4();     // HashMap: String=>ArrayList
-    // map5();     // Passing Map as argument into a method
-    // map6();     // TreeMap: Long=>Book - hashCode() & equals()
-    // map7();     // HashMap: (Student=>Book) - hashCode() & equals() 
-     //map8();     // HashMap: (String=>HashMap<String,String>
-     //map9();     // TreeMap: (Student=>Book) - Comparator required
-
+     // map1();     // HashMap: String=>String
+     // map2();     // HashMap: String=>Integer
+     // map3();     // HashMap: Integer=>Book
+     // map4();     // HashMap: String=>ArrayList
+     // map5();     // Passing Map as argument into a method
+     // map6();     // TreeMap: Integer=>Book - hashCode() & equals()
+     // map7();     // HashMap: (Student=>Book) - hashCode() & equals()
+     // map8();     // HashMap: (String=>HashMap<String,String>
+     // map9();     // TreeMap: (Student=>Book) - Comparator required
   }
 
   public static void map1() // HashMap: String=>String,  key=>value
@@ -132,12 +129,7 @@ public class MapsDemo {
       String film = map.get(k);   // get value associated with key
       System.out.println(k + " : " + film);
     }
-
-
-
   }
-
-
 
   public static void map2() {
     // Keys and Values must be Class types.  
@@ -171,17 +163,17 @@ public class MapsDemo {
   }
 
   public static void map3() {
-    // Map a Long integer (8-bytes) to a Book object
-    Map<Long, Book> bookMap = new HashMap<>();
-    // "L" for Long integer
-    bookMap.put(200034L, new Book(30004, "Fight Club")); // long int values automatically converted to Integer
-    bookMap.put(600035L, new Book(40023, "Jaws"));
-    bookMap.put(222222L, new Book(55523, "White Teeth"));
-    bookMap.put(222222L, new Book(66623, "Ted"));  // repeated key, Book entry is updated with new value
+    // Map a Book Code to a Book object
+    Map<Integer, Book> bookMap = new HashMap<>();
 
-    Set<Long> keySet = bookMap.keySet();
+    bookMap.put(30004, new Book(30004, "Fight Club")); // long int values automatically converted to Integer
+    bookMap.put(40023, new Book(40023, "Jaws"));
+    bookMap.put(55523, new Book(55523, "White Teeth"));
+    bookMap.put(66623, new Book(66623, "Ted Bundy"));  // repeated key, Book entry is updated with new value
 
-    for (Long key : keySet) {
+    Set<Integer> keySet = bookMap.keySet();
+
+    for (Integer key : keySet) {
       Book book = bookMap.get(key);
       System.out.println(key + " Title: "
               + book.getTitle() + ", Code:" + book.getCode());
@@ -195,7 +187,7 @@ public class MapsDemo {
    */
   public static void map4() {
     // Map: Name (String) => ArrayList object (containing list of names)
-    Map< String, ArrayList<String>> friendsMap = new HashMap<>();
+    Map< String, ArrayList<String> > friendsMap = new HashMap<>();
 
     // A new ArrayList is required for each map entry
     // John has two friends => Kylie and Donald
@@ -221,7 +213,6 @@ public class MapsDemo {
       System.out.print(s + ", ");
     }
 
-
     // Output all map entries
     for (Map.Entry<String, ArrayList<String>> entry : friendsMap.entrySet()) {
       key = entry.getKey();
@@ -230,34 +221,35 @@ public class MapsDemo {
     }
   }
 
-  public static void map5() // demonstrates passing a Map as an argument
+  public static void map5() // demonstrates passing a Map as an argument to a method
   {
-    Map<Long, Book> bookMap = new HashMap<>();
+    // Map a book code to a Book class/object
+    //
+    Map<Integer, Book> bookMap = new HashMap<>();
 
-    bookMap.put(200034L, new Book(30004, "Fight Club")); // long int values automatically converted to Integer
-    bookMap.put(600035L, new Book(40023, "Jaws"));
-    bookMap.put(222222L, new Book(55523, "White Teeth"));
-    bookMap.put(222222L, new Book(66623, "Ted"));  // duplicate, overwrites existing one
+    bookMap.put(30004, new Book(30004, "Fight Club")); // long int values automatically converted to Integer
+    bookMap.put(40023, new Book(40023, "Jaws"));
+    bookMap.put(55523, new Book(55523, "White Teeth"));
+    bookMap.put(55523, new Book(55523, "Ted"));  // duplicate key, overwrites existing one
 
-    ArrayList<Book> bookList;
+    List<Book> shortTitledBookList;
 
-    bookList = getShortTitledBooks(bookMap, 4); // pass a Map as an argument
+    shortTitledBookList = getShortTitledBooks(bookMap, 4); // pass a Map as an argument
 
     System.out.println("Books with short titles (<=4 characters)");
-    for (Book book : bookList) {
-      System.out.println(" Title: "
-              + book.getTitle() + ", Code:" + book.getCode());
+    for (Book book : shortTitledBookList) {
+      System.out.println(" Code:" + book.getCode() + ", Title: " + book.getTitle() );
     }
   }
 
-  public static ArrayList<Book> getShortTitledBooks(Map<Long, Book> bookMap, int maxLengthOfTitle) {
+  public static List<Book> getShortTitledBooks(Map<Integer, Book> bookMap, int maxLengthOfTitle) {
     // parameter bookMap is a reference to the original map
 
-    ArrayList<Book> bookList = new ArrayList<>(); // list to store the result
+    List<Book> bookList = new ArrayList<>(); // list to store the result
 
-    Set<Long> keySet = bookMap.keySet();
+    Set<Integer> keySet = bookMap.keySet();
 
-    for (Long key : keySet) {
+    for (Integer key : keySet) {
       Book book = bookMap.get(key);
       if (book.getTitle().length() <= maxLengthOfTitle) {
         bookList.add(book);
@@ -270,19 +262,19 @@ public class MapsDemo {
    * TREE MAP maintains sorted order based on compareTo() of Long class
    */
   public static void map6() {
-    TreeMap<Long, Book> bookMap = new TreeMap<>();
+    TreeMap<Integer, Book> bookMap = new TreeMap<>();
 
-    bookMap.put(200034L, new Book(30004, "Fight Club")); // long int values automatically converted to Long
-    bookMap.put(600035L, new Book(40023, "Jaws"));
-    bookMap.put(222222L, new Book(55523, "White Teeth"));
-    bookMap.put(222222L, new Book(66623, "Ted"));  // duplicate
+    bookMap.put(30004, new Book(30004, "Fight Club")); // long int values automatically converted to Long
+    bookMap.put(40023, new Book(40023, "Jaws"));
+    bookMap.put(55523, new Book(55523, "White Teeth"));
+    bookMap.put(66623, new Book(66623, "Ted"));  // duplicate
 
     System.out.println("TreeMap");
     System.out.println("Note that output should be in order of Key");
 
-    Set<Long> keySet = bookMap.keySet();
+    Set<Integer> keySet = bookMap.keySet();
 
-    for (Long key : keySet) {
+    for (Integer key : keySet) {
       Book book = bookMap.get(key);
       System.out.println("Key: " + key
               + book.getTitle() + ", Code:" + book.getCode());
@@ -301,6 +293,7 @@ public class MapsDemo {
   {
     // Student class is used as the Key in this case,
     // so, it must implement hashCode() and equals()
+    // so that the map can compare elements.
 
     Map<Student, Book> favouriteBook = new HashMap<>();
 
@@ -328,13 +321,13 @@ public class MapsDemo {
    */
   public static void map8() // map: Name (String) => Attributes (Map)
   {
-    Map<String, HashMap<String, String>> usersMap = new HashMap<>();
+    Map< String, HashMap<String, String> > usersMap = new HashMap<>();
 
-    HashMap<String, String> attributesMap = new HashMap<>();
+    HashMap< String, String > attributesMap = new HashMap<>();
     // HashMap for John's attributes
     attributesMap.put("Hair", "Red");
     attributesMap.put("Height", "1.76");
-    usersMap.put("John", attributesMap);
+    usersMap.put("John", attributesMap);  // map name to attributes
 
     attributesMap = new HashMap<>();    // new hashmap for Alice's attributes      
     attributesMap.put("Hair", "Black");
@@ -386,7 +379,8 @@ public static void map9()  // TREE Map (Student => Book )
     {
         // Student class is used as the Key in this TreeMap,
         // so, Student must implement Comparable or
-        // a Comparator must be supplied to the Map on construction
+        // a Comparator must be supplied to the TreeMap on construction
+        // The comparator will dictate the ordering of the elements in the map.
 
         Map<Student, Book> favouriteBook = new TreeMap<>(new ComparatorStudentName());
         
