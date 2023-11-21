@@ -2,26 +2,30 @@
 /**                                    February 2023
  * Map Interface - Implemented by HashMap and TreeMap classes
  *
- * A Map is a Data Structure that allows us to associate a Key with a Value.
- * e.g. A person's name with their favorite film "John" -> "StarWars"
+ * A Map is a Data Structure that allows us to associate a Key with a Value
+ * forming what is called a "Key-Value" Pair.
+ * e.g. Map a person's name with their favorite film "John" -> "StarWars"
  * or a class group with a list of students: "SD2A" -> {"Anne", "John",..}.
  *
  * When we add an entry to a Map we must provide both the Key and the Value.
  * These pairs are often called a "Key-Value" pairs.
  *
- * A Map stores both the Key and the Value for each key|value pair. Key and
- * Value must be class types (not primitive types, so Integer rather than int)
+ * A Map stores both the Key and the Value for each key|value pair.
+ * Key and Value must be class types (not primitive types, so Integer rather than int)
  * The Key class must implement the methods hashCode() and equals() [or inherit
- * them]
+ * them], and they must be consistent.
  *
  * String and Integer are the most effective and preferred Key types.
  * Keys must be unique (no duplicate keys are allowed)
  * A Map can be implemented as a HashMap or a TreeMap.
- *  - HashMap is fastest for put() and get() (but order is not maintained)
- *    HashMap time complexity is O(1)
+ *  - HashMap is fastest for put() and get() (but the element order is not maintained)
+ *    hashCode() and equals() methods must be implemented.
+ *    HashMap time complexity is O(1).
+ *
  *  - TreeMap maintains a sorted order based on the "natural ordering"
  *    of the Key elements ( defined by compareTo() ) or based on a
- *    Comparator supplied in the Map constructor.
+ *    Comparator [compare() method] supplied in the Map constructor.
+ *    [hashCode() and equals() are not required here, as compareTo() or compare() is used]
  *    TreeMap time complexity is O(log n)
  *
  * Maps are commonly used to pass data around within a program, so it is
@@ -42,8 +46,14 @@ public class MapsDemo {
     System.out.println("Maps Demo");
     System.out.println("- remember to uncomment method calls in main() to see outputs.");
 
-     // map1();     // HashMap: String=>String
+    map1();     // HashMap: String=>String
      // map2();     // HashMap: String=>Integer
+        //TODO Create a separate project to implement a simple PhoneBook container class
+        // that uses a Map to map firstName to phoneNumber. Provide methods:
+        // addEntry( name, phoneNumber)
+        // findPhoneNumber( name ) to get corresponding number
+        // remove( name )     - test with five entries
+
      // map3();     // HashMap: Integer=>Book
      // map4();     // HashMap: String=>ArrayList
      // map5();     // Passing Map as argument into a method
@@ -55,6 +65,7 @@ public class MapsDemo {
 
   public static void map1() // HashMap: String=>String,  key=>value
   {
+    // We must supply types for the Key and for the Value (as type parameters)
     Map<String, String> map = new HashMap<>();
     // Creates a new HashMap object, but stores the reference to the HashMap
     // in a reference of type Map.  "Map" is an Interface, and we use it to create
@@ -64,11 +75,12 @@ public class MapsDemo {
     map.put("John", "Alien");
     map.put("Anne", "LaLa Land");
     map.put("Zoe", "Alien");
-    map.put("Zoe", "Trainspotting");  // replaces previous entry
+    map.put("Zoe", "Trainspotting");  // will overwrite the "Alien" entry
+    // we can not use the same key for two entries - keys must be unique
 
     // retrieve or get() entries from the map
     String key = "Zoe";
-    String favourite = map.get(key);  // use Key to get Value
+    String favourite = map.get(key);  // use Key to retrieve the Value
     System.out.println(key + " favourite film is: " + favourite);
 
     // delete or remove() entries from the map
@@ -109,7 +121,7 @@ public class MapsDemo {
       System.out.println("Name: " + key + ", Favourite film: " + value);
     }
 
-    //Print the values in the map
+    //Print the values from the map
     System.out.println("All values from the Map:");
     Collection<String> values = map.values(); // get all the values
     for (String s : values) {
@@ -135,7 +147,7 @@ public class MapsDemo {
     // Keys and Values must be Class types.  
     // Primitive type values such as 'int' values will be converted
     // automatically to their corresponding Class types (e.g. Integer).
-    // (This is called Autoboxing).
+    // (This is called Boxing or Autoboxing).
 
     Map<String, Integer> ageMap = new HashMap<>();
 
@@ -149,8 +161,8 @@ public class MapsDemo {
     // that they are returned as a Set. (A Set has no duplicate elements)
 
     // Retrieve all values using key values
-    for (String key : keySet) {
-      int value = ageMap.get(key);
+    for (String key : keySet) {       // for each key in the set
+      int value = ageMap.get(key);    // get the age value using the key
       System.out.println(key + " : " + value);
     }
 
@@ -292,8 +304,11 @@ public class MapsDemo {
   public static void map7() // Map (Student => Book )
   {
     // Student class is used as the Key in this case,
-    // so, it must implement hashCode() and equals()
-    // so that the map can compare elements.
+    // so, the Student class must implement hashCode() and equals()
+    // so that the map can use those methods to create a Hash of the
+    // student object.  The programmer decides which Student fields to
+    // in hashCode() and equals() , but the same fields must be used
+    // for consistency.
 
     Map<Student, Book> favouriteBook = new HashMap<>();
 
