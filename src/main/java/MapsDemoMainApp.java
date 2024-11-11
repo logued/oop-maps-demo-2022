@@ -1,5 +1,5 @@
 
-/**                                    February 2023
+/**                                    Nov 2024
  * Map Interface - Implemented by HashMap and TreeMap classes
  *
  * A Map is a Data Structure that allows us to associate a Key with a Value.
@@ -36,13 +36,13 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class MapsDemo {
+public class MapsDemoMainApp {
 
   public static void main(String[] args) {
     System.out.println("Maps Demo");
     System.out.println("- remember to uncomment method calls in main() to see outputs.");
 
-     // map1();     // HashMap: String=>String
+      map1();     // HashMap: String=>String
      // map2();     // HashMap: String=>Integer
      // map3();     // HashMap: Integer=>Book
      // map4();     // HashMap: String=>ArrayList
@@ -292,8 +292,9 @@ public class MapsDemo {
   public static void map7() // Map (Student => Book )
   {
     // Student class is used as the Key in this case,
-    // so, it must implement hashCode() and equals()
+    // so, it MUST implement hashCode() and equals()
     // so that the map can compare elements.
+
 
     Map<Student, Book> favouriteBook = new HashMap<>();
 
@@ -316,7 +317,7 @@ public class MapsDemo {
   }
 
   /**
-   * This sample maps String to HashMap<String,String>
+   * This sample maps "String" to "HashMap<String,String>"
    * representing a mapping of a String (name) to a Map of attributes [ 1 : Many ]
    */
   public static void map8() // map: Name (String) => Attributes (Map)

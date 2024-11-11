@@ -2,8 +2,8 @@
  * 
  * This Student class MUST implement the hashCode() and equals() methods
  * because Student objects are being used as Keys in a HashMap, and a 
- * HashMap requires that its key objects implement hashCode() in order
- * to perform the hashing function.
+ * HashMap requires that its key objects implement hashCode() & equals()
+ * in order to perform the hashing function.
  * 
  */
 
