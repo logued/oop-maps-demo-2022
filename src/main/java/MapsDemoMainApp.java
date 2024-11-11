@@ -82,7 +82,7 @@ public class MapsDemoMainApp {
     key = "Elvis";
     favourite = map.get(key);  // use Key to get Value
     if (favourite != null) {
-      System.out.println(key + " favourite film is: " + favourite);
+      System.out.println(key + " favourite film is : " + favourite);
     } else {
       System.out.println(key + " NOT found");
     }
