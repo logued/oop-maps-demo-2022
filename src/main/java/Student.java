@@ -4,9 +4,10 @@
  * because Student objects are being used as Keys in a HashMap, and a 
  * HashMap requires that its key objects implement hashCode() & equals()
  * in order to perform the hashing function.
+ * The hashCode() and equals() methods must be consistent in their
+ * implementation.
  * 
  */
-
 
 import java.util.Objects;
 

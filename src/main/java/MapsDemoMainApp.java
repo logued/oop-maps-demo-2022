@@ -11,18 +11,18 @@
  *
  * A Map stores both the Key and the Value for each key|value pair. Key and
  * Value must be class types (not primitive types, so Integer rather than int)
- * The Key class must implement the methods hashCode() and equals() [or inherit
+ * The Key class MUST implement the methods hashCode() and equals() [or inherit
  * them]
  *
  * String and Integer are the most effective and preferred Key types.
  * Keys must be unique (no duplicate keys are allowed)
  * A Map can be implemented as a HashMap or a TreeMap.
  *  - HashMap is fastest for put() and get() (but order is not maintained)
- *    HashMap time complexity is O(1)
- *  - TreeMap maintains a sorted order based on the "natural ordering"
+ *    HashMap time complexity for get and put is O(1)
+ *  - TreeMap maintains a sorted order based on the "Natural Ordering"
  *    of the Key elements ( defined by compareTo() ) or based on a
  *    Comparator supplied in the Map constructor.
- *    TreeMap time complexity is O(log n)
+ *    TreeMap time complexity for put and get is O(log n)
  *
  * Maps are commonly used to pass data around within a program, so it is
  * important to understand how to use them.
@@ -68,21 +68,23 @@ public class MapsDemoMainApp {
 
     // retrieve or get() entries from the map
     String key = "Zoe";
-    String favourite = map.get(key);  // use Key to get Value
-    System.out.println(key + " favourite film is: " + favourite);
+    String favouriteFilm = map.get(key);  // use Key to get Value
+    System.out.println(key + " favourite film is: " + favouriteFilm);
 
     // delete or remove() entries from the map
     key = "John";
-    map.remove(key);  // deletes the Entry for John
+    map.remove(key);  // deletes the map Entry for John
 
     //TODO: add your own name and favourite film to the map
     // and then retrieve and display it. Finally remove it.
     // get() returns null if the key is not found, so we should always check for null
-    // (this check may be omitted from the sample code below, but you should always use it)
+    // (this check may be omitted from some sample code below, but you should always use it)
+
+
     key = "Elvis";
-    favourite = map.get(key);  // use Key to get Value
-    if (favourite != null) {
-      System.out.println(key + " favourite film is : " + favourite);
+    favouriteFilm = map.get(key);  // use Key to get Value
+    if (favouriteFilm != null) {
+      System.out.println(key + " favourite film is : " + favouriteFilm);
     } else {
       System.out.println(key + " NOT found");
     }
@@ -99,21 +101,24 @@ public class MapsDemoMainApp {
      */
     System.out.println("Retrieve all entries from a Map (no order)");
     // note that a map Entry contains both the Key and the Value
+    // Entry is a class that is used by Map as the structure to store map entries.
 
-    Set<Entry<String, String>> entrySet = map.entrySet();  // get all entries (Entry objects)
+    // get all entries (Entry objects) in the map, and return as a Set of Entries.
+    Set< Entry<String, String> > entrySet = map.entrySet();
+
     System.out.println("\n\nMap<Key:Value> pairs (Entry objects)");
-    // iterate over each Entry in the set of etries
-    for (Map.Entry<String, String> entry : entrySet) {
-      key = entry.getKey(); // get key object from the Entry
-      String value = entry.getValue();
+    // iterate over each Entry in the set of entries
+    for (Map.Entry<String, String> entry : entrySet) {  // for each entry in the set...
+      key = entry.getKey();             // get key object from the Entry
+      String value = entry.getValue();  // get the value from the Entry
       System.out.println("Name: " + key + ", Favourite film: " + value);
     }
 
-    //Print the values in the map
+    // Print the values in the map
     System.out.println("All values from the Map:");
     Collection<String> values = map.values(); // get all the values
-    for (String s : values) {
-      System.out.print(s + ", ");
+    for (String value : values) {
+      System.out.print(value + ", ");
     }
 
     // Get all keys from the Map (Set used because keys are unique)
@@ -259,7 +264,7 @@ public class MapsDemoMainApp {
   }
 
   /**
-   * TREE MAP maintains sorted order based on compareTo() of Long class
+   * TREE MAP maintains sorted order based on compareTo() of Integer class
    */
   public static void map6() {
     TreeMap<Integer, Book> bookMap = new TreeMap<>();
@@ -292,9 +297,9 @@ public class MapsDemoMainApp {
   public static void map7() // Map (Student => Book )
   {
     // Student class is used as the Key in this case,
-    // so, it MUST implement hashCode() and equals()
+    // so, Student MUST implement both hashCode() and equals()
     // so that the map can compare elements.
-
+    //
 
     Map<Student, Book> favouriteBook = new HashMap<>();
 
@@ -319,6 +324,7 @@ public class MapsDemoMainApp {
   /**
    * This sample maps "String" to "HashMap<String,String>"
    * representing a mapping of a String (name) to a Map of attributes [ 1 : Many ]
+   * It maps a persons name to a Map of attributes (attribute name->attribute value)
    */
   public static void map8() // map: Name (String) => Attributes (Map)
   {
