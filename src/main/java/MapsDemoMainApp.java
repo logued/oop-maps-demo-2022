@@ -27,14 +27,8 @@
  * Maps are commonly used to pass data around within a program, so it is
  * important to understand how to use them.
  */
-import java.util.HashMap;
-import java.util.TreeMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 public class MapsDemoMainApp {
 
@@ -390,8 +384,11 @@ public static void map9()  // TREE Map (Student => Book )
         // The comparator will dictate the ordering of the elements in the map.
 
         Map<Student, Book> favouriteBook = new TreeMap<>(new ComparatorStudentName());
-        
-        Student student = new Student(1001, "Tom Malone");
+
+        // Alternatively, use Comparator.comparing in constructor for TreeMap order
+        // Map<Student, Book> favouriteBook = new TreeMap<>(Comparator.comparing(Student::getName));
+
+      Student student = new Student(1001, "Tom Malone");
         Book book = new Book(30004, "Lazy Days");
         
         favouriteBook.put(student, book);
