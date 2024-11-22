@@ -32,21 +32,21 @@
 import java.util.*;
 import java.util.Map.Entry;
 
-public class MapsDemoMainApp {
+public class AppMainMapsDemo {
 
     public static void main(String[] args) {
         System.out.println("Maps Demo");
         System.out.println("- remember to uncomment method calls in main() to see outputs.");
 
         map1();     // HashMap: String=>String
-        // map2();     // HashMap: String=>Integer
-        // map3();     // HashMap: Integer=>Book
-        // map4();     // HashMap: String=>ArrayList
-        // map5();     // Passing Map as argument into a method
-        // map6();     // TreeMap: Integer=>Book - hashCode() & equals()
-        // map7();     // HashMap: (Student=>Book) - hashCode() & equals()
-        // map8();     // HashMap: (String=>HashMap<String,String>
-        // map9();     // TreeMap: (Student=>Book) - Comparator required
+//         map2();     // HashMap: String=>Integer
+//         map3();     // HashMap: Integer=>Book
+//         map4();     // HashMap: String=>ArrayList
+//         map5();     // Passing Map as argument into a method
+//         map6();     // TreeMap: Integer=>Book - hashCode() & equals()
+//         map7();     // HashMap: (Student=>Book) - hashCode() & equals()
+//         map8();     // HashMap: (String=>HashMap<String,String>
+//         map9();     // TreeMap: (Student=>Book) - Comparator required
     }
 
     public static void map1() // HashMap: String=>String,  key=>value
