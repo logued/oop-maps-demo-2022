@@ -22,18 +22,16 @@ public class Student {
         this.name = name;
     }
 
+    // Use IDE Menu options:  "Code > Generate > equals() and hashcode()"
+    //
     @Override
-    public int hashCode()   // has function that used both id and name
-    {
-        int hash = 5;
-        hash = 89 * hash + this.id;
-        hash = 89 * hash + Objects.hashCode(this.name);
-        return hash;
+    public int hashCode() {
+        return Objects.hash(id, name);  // both fields are included in the hash function
     }
 
     @Override
-    public boolean equals(Object obj)  // compliments the hashCode()
-    {
+    public boolean equals(Object obj)  // must be consistent with the hashCode()
+    {                                   // i.e. use the same fields as in hashcode()
         if (this == obj) {
             return true;
         }
